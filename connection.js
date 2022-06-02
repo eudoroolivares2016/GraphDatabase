@@ -20,4 +20,9 @@ const client = new Gremlin.driver.Client( //TODO this will need more args for au
 );
 const graph = new Gremlin.structure.Graph(); //initalize the graph Graph can have configurations set on it will need more documentation for that
 const g = graph.traversal().withRemote(client); // var g is the typical way to initialize the graph traversal on the remote server connection
-​
+
+function retrieveVerticies(){
+    return client.submit('g.V()', { }).then(function (result) {
+        console.log("Result: %s\n", JSON.stringify(result));
+    });
+}
